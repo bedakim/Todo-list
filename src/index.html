@@ -5,56 +5,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>해커톤 템플릿 프로젝트</title>
+  <title>Todo-list</title>
   <link rel="stylesheet" href="./index.scss">
 </head>
 
 <body>
-  <h1>해커톤 템플릿 프로젝트</h1>
 
-  <div class="board">
-    <div class="row">
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-    </div>
-    <div class="row">
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-    </div>
-    <div class="row">
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-    </div>
-    <div class="row">
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-    </div>
-    <div class="row">
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col"></div>
-    </div>
+  <div class="container">
+      <h1>Todo list</h1>
+      <p>
+        <label class="guide">Add your things!</label>
+      </p>
 
-  </div>
+   <form class="todo-form">
+        <input class="todo-input" type="text" name="todo"><button>Add</button>
+     </form>
+
+      <h3>Todo</h3>
+
+      <ul class="todo-list"></ul>
 
 
-  <div class="result"></div>
+</div>
 
-  <button class="reset">다시시작</button>
+<footer class="footer">
+    <p class="footer-info">Design By Beda Kim</p>
+  </footer>
+
 
   <script src="./index.js"></script>
 </body>

@@ -1,102 +1,78 @@
-let boardState = [
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0]
-];
+const todoFormEl = document.querySelector(".todo-form");
+const todoListEl = document.querySelector(".todo-list");
 
-function drawBorad() {
-  document.querySelectorAll(".row").forEach((rowEl, rowIndex) => {
-    rowEl.querySelectorAll(".col").forEach((colEl, colIndex) => {
-      if (boardState[rowIndex][colIndex] === 1) {
-        colEl.classList.add("checked");
-      } else {
-        colEl.classList.remove("checked");
-      }
-    });
-  });
-  if (bingo(boardState)) {
-    document.querySelector(".result").textContent = "BINGO!";
-    document.querySelector(".reset").classList.add("show");
-  } else {
-    document.querySelector(".result").textContent = "";
-    document.querySelector(".reset").classList.remove("show");
-  }
-}
+todoFormEl.addEventListener("submit", e => {
+  e.preventDefault();
+  addTodo(e.target.elements.todo.value);
+  //input 안의 내용 초기화
 
-drawBorad();
+  //1. .value에 값 대입
+  // e.target.elements.todo.value = ''
 
-function bingo(arr) {
-  for (let i = 0; i < 5; i++) {
-    let checked = true;
-    for (let j = 0; j < 5; j++) {
-      if (arr[i][j] === 0) {
-        checked = false;
-      }
-    }
-    if (checked) {
-      return true;
-    }
-  }
-
-  for (let i = 0; i < 5; i++) {
-    let checked = true;
-    for (let j = 0; j < 5; j++) {
-      if (arr[j][i] === 0) {
-        checked = false;
-      }
-    }
-    if (checked) {
-      return true;
-    }
-  }
-
-  {
-    let checked = true;
-    for (let j = 0; j < 5; j++) {
-      if (arr[j][j] === 0) {
-        checked = false;
-      }
-    }
-    if (checked) {
-      return true;
-    }
-  }
-
-  {
-    let checked = true;
-    for (let j = 0; j < 5; j++) {
-      if (arr[j][4 - j] === 0) {
-        checked = false;
-      }
-    }
-    if (checked) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-document.querySelectorAll(".row").forEach((rowEl, rowIndex) => {
-  rowEl.querySelectorAll(".col").forEach((colEl, colIndex) => {
-    colEl.addEventListener("click", e => {
-      if (!bingo(boardState)) {
-        boardState[rowIndex][colIndex] = 1;
-        drawBorad();
-      }
-    });
-  });
+  //2. 폼의 리셋 사용하기
+  e.target.reset();
 });
+function addTodo(newTodoText) {
+  // 클릭 한번이 되어야 할때 수행되어야하는 작업
 
-document.querySelector(".reset").addEventListener("click", e => {
-  boardState = [
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0]
-  ];
-  drawBorad();
+  // alert (newTodoText)
+  //li 태그를 만들어서 문서안에 삽입하기
+  const todoItemEl = document.createElement("li");
+  todoItemEl.textContent = newTodoText;
+
+  todoListEl.appendChild(todoItemEl);
+
+  //  const trashEl = document.createElement('button')
+  //  trashEl.textContent = "삭제"
+
+  //   const todoTrasheEl = document.querySelector('.button')
+  //  todoTrasheEl.appendChild(todoListEl)
+
+  //삭제 버튼 만들어서 문서안에 넣기
+  const deleteButtonEl = document.createElement("button");
+  deleteButtonEl.textContent = "삭제";
+  todoItemEl.appendChild(deleteButtonEl);
+  //삭제를 클릭시 항목이 삭제
+  deleteButtonEl.addEventListener("click", e => {
+    todoListEl.removeChild(todoItemEl);
+    //e.target.parentElement.parentElement.removeChild(e.target.parentElement)
+  });
+  //위로버튼을 만들어서 안에 넣기
+  const upButtonEl = document.createElement("button");
+  upButtonEl.textContent = "위로";
+  todoItemEl.appendChild(upButtonEl);
+
+  upButtonEl.addEventListener("click", e => {
+    // alert('위로')
+    if (todoItemEl.previousElementSibling != null) {
+      todoListEl.insertBefore(todoItemEl, todoItemEl.previousElementSibling);
+    }
+  });
+  //아래로 버튼
+  const downButtonEl = document.createElement("button");
+  downButtonEl.textContent = "아래로";
+  todoItemEl.appendChild(downButtonEl);
+  downButtonEl.addEventListener("click", e => {
+    // alert('아래로')
+    if (todoItemEl.nextElementSibling != null) {
+      todoListEl.insertBefore(
+        todoItemEl,
+        todoItemEl.nextElementSibling.nextElementSibling
+      );
+    }
+  });
+}
+
+// addEl.addEventListener( 'click', e => {
+//     const newTodoText = prompt('새 할일을 추가 하시오')
+//   addTodo(newTodoText)
+// })
+
+// addTodo('xsccss')
+// addTodo('vdsvdvsd')
+// addTodo('dwdgggw')
+
+document.querySelector(".todo-input").addEventListener("keypress", e => {
+  console.log("keypress");
+  console.log("key:", e.key);
 });

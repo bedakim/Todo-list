@@ -1,26 +1,42 @@
-$main-color: skyblue;
 
-body {
-  background-color: $main-color;
-}
 
-.row {
-  display: flex;
-}
 
-.col {
-  width: 30px;
-  height: 30px;
-  border: 1px solid black;
-  margin: 1px;
-}
-.col.checked {
-  background-color: black;
+
+body{
+  background-color: #1971c2;
+  min-height: 100vh;
+  background-position: center;
+  text-align: center;
+  background-size: cover;
+  color: #fff;
+
 }
 
-.reset {
-  display: none;
+h1{
+  text-align: center;
+  margin-top: 10rem;
+  margin-bottom:0px;
+  font-size: 5rem;
 }
-.reset.show {
-  display: inline-block;
+input{
+  border-radius: 5px;
+  border: none;
+  width: 400px;
+  height: 22px;
+}
+button{
+  border-radius: 5px;
+  border: none;
+}
+li{
+list-style: none;
+}
+
+p {
+  font-size: 1em;
+  text-align: center;
+}
+
+footer{
+  padding-top: 10rem;
 }
